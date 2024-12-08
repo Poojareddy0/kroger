@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Data Management Hub</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" crossorigin="anonymous">
+    <style>
+    body {
+        margin: 0;
+        font-family: 'Roboto', serif; /* Classic look with serif font */
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        min-height: 100vh;
+        padding: 20px;
+    }
+    .card {
+        margin: 20px;
+        width: calc(33.3333% - 40px);
+        padding: 20px;
+        text-align: center;
+        color: #333;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .card .title {
+        font-size: 24px;
+        margin-bottom: 15px;
+        font-weight: bold; /* Bolder titles for emphasis */
+    }
+    .card .features ul {
+        list-style: none;
+        padding: 0;
+    }
+    .card .features ul li {
+        margin: 10px 0;
+        font-size: 16px;
+        font-weight: 500; /* Slightly bold for readability */
+    }
+    .card .btn {
+        background: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+    }
+    h1.page-title { 
+      width: 100%;
+      text-align: center;
+      color: #333;
+      font-size: 28px;
+      margin: 20px 0;
+      font-weight: bold;
+  }
+    .card .btn:hover {
+        background-color: #0056b3;
+    }
+    @media (max-width: 768px) {
+        .card {
+            width: calc(50% - 40px);
+        }
+    }
+    @media (max-width: 480px) {
+        .card {
+            width: calc(100% - 40px);
+        }
+    }
+    </style>
+</head>
+<body>
+  <h1 class="page-title">Dynamic Data Management Hub</h1>
+<div class="card">
+    <div class="title">Search Household Data</div>
+    <div class="features">
+        <ul>
+            <li>Explore detailed samples for specific household numbers.</li>
+            <li>Search and sort data pulls by various criteria such as Household Number, Basket Number, and Date.</li>
+        </ul>
+    </div>
+    <a href="{{url_for('searchhhm')}}" class="btn">Click here</a>
+</div>
+
+<div class="card">
+    <div class="title">Interactive Dashboard</div>
+    <div class="features">
+        <ul>
+            <li>Investigate which demographic factors influence customer engagement the most.</li>
+            <li>Focus on income as a primary demographic factor for analysis.</li>
+        </ul>
+    </div>
+    <a href="{{url_for('loadDashboard')}}" class="btn">Click here</a>
+</div>
+
+<div class="card">
+    <div class="title">Data Management</div>
+    <div class="features">
+        <ul>
+            <li>Upload and manage the latest datasets for Transactions, Households, and Products.</li>
+            <li>Supports only CSV format for data uploads to ensure compatibility.</li>
+        </ul>
+    </div>
+    <a href="{{url_for('uploaddatasets')}}" class="btn">Click here</a>
+</div>
+
+</body>
+</html>

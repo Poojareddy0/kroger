@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project Dashboard</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            height: 100vh;
+            background: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 15px 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 300px;
+        }
+        input {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 20px;
+        }
+        .fa-search {
+            background: #5c6bc0;
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .fa-home {
+            background: #5c6bc0;
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            text-decoration: none;
+            font-size: 24px;
+            transition: background-color 0.3s;
+        }
+        .fa-home:hover {
+            background: #3f51b5;
+        }
+        .Errormessage {
+            color: #FF0000;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>SEARCH ON DATA PULLS BASED ON <i>Hshd_num</i></h1>
+    <a id="dashboard" class="fa fa-arrow-left" aria-hidden="true" href="{{url_for('dashboard')}}" title="Back to Home" style="color: black;"></a>
+
+    <div class="Errormessage">{{ message }}</div>
+    <form action="{{url_for('searchhhmnew')}}" method="POST">
+        <input type="search" name="hshd_num" placeholder="search Hshd_num" required>
+        <i class="fa fa-search"></i>
+    </form>
+
+    <script type="text/javascript">
+        const form = document.querySelector('form');
+        const input = form.querySelector('input[type="search"]');
+        const faSearch = form.querySelector('.fa-search');
+        faSearch.addEventListener('click', function() {
+            form.submit();
+        });
+        input.addEventListener('input', function() {
+            const clearBtn = form.querySelector('.clear');
+            if(input.value.length > 0) {
+                clearBtn.style.display = 'block';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+        });
+        document.getElementById("clear-btn").addEventListener("click", function() {
+            input.value = '';
+            this.style.display = 'none';
+            input.focus();
+        });
+    </script>
+</body>
+</html>

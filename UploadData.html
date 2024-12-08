@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Data Management Hub</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" crossorigin="anonymous">
+    <style>
+    body {
+        margin: 0;
+        font-family: 'Roboto', serif; /* Classic look with serif font */
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        min-height: 100vh;
+        padding: 20px;
+    }
+    .card {
+        margin: 20px;
+        width: calc(33.3333% - 40px);
+        padding: 20px;
+        text-align: center;
+        color: #333;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .card .title {
+        font-size: 24px;
+        margin-bottom: 15px;
+        font-weight: bold; /* Bolder titles for emphasis */
+    }
+    .card .features ul {
+        list-style: none;
+        padding: 0;
+    }
+    .card .features ul li {
+        margin: 10px 0;
+        font-size: 16px;
+        font-weight: 500; /* Slightly bold for readability */
+    }
+    .card .btn {
+        background: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+    }
+    h1.page-title { 
+      width: 100%;
+      text-align: center;
+      color: #333;
+      font-size: 28px;
+      margin: 20px 0;
+      font-weight: bold;
+  }
+  #dashboard {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    font-size: 24px;
+    color: black;
+    text-decoration: none;
+}
+    .card .btn:hover {
+        background-color: #0056b3;
+    }
+    @media (max-width: 768px) {
+        .card {
+            width: calc(50% - 40px);
+        }
+    }
+    @media (max-width: 480px) {
+        .card {
+            width: calc(100% - 40px);
+        }
+    }
+    </style>
+</head>
+  <body>
+
+    <a id="dashboard" class="fa fa-arrow-left" aria-hidden="true" href="{{url_for('dashboard')}}" title="Back to Home" style="color: black;"></a>
+ 
+<div class="card">
+
+  <div class="title">Upload most current Data sets for Households</div>
+
+  
+
+  <div class="features">
+    <ul>
+      <li><span>Mandatory Data columns</span> of the <span>Households</span> data sets</li>
+	  <li>HSHD_NUM - Unique, L , AGE_RANGE , MARITAL</li>
+	  <li>INCOME_RANGE, HOMEOWNER, HSHD_COMPOSITION </li>
+	  <li>HH_SIZE, CHILDREN </li>
+	  
+    </ul>
+  </div><!--/features-->
+  <div><FONT COLOR="orange">{{ message }}</FONT></div><br/>
+<form class ="formclass" action = "{{url_for('storeuploadedhouseholdfile')}}" method = "post" enctype="multipart/form-data">
+    <input type="file" name="file" class="fileupload"/>
+	<a href='#' onclick='this.parentNode.submit(); return false;' class="btn">Upload Households Data</a>
+	</form>
+</div><!--/card-->
+
+  
+<div class="card">
+
+  <div class="title">Upload most current Data sets for Transactions</div>
+
+  <div class="features">
+    <ul>
+      <li><span>Mandatory Data columns</span> of the <span>Transactions</span> data sets</li>
+	  <li>BASKET_NUM, HSHD_NUM, PURCHASE_, </li>
+	  <li>PRODUCT_NUM,SPEND, UNITS, STORE_R </li>
+	  <li>WEEK_NUM, YEAR </li>
+    </ul>
+  </div><!--/features-->
+  <div><FONT COLOR="orange">{{ messageTransactions }}</FONT></div><br/>
+	<form class ="formclass" enctype = "multipart/form-data" action = "{{url_for('storeuploadedTransactionfile')}}" method = "post">
+    <input type="file" name="file" class="fileupload"/>
+	<a href='#' onclick='this.parentNode.submit(); return false;' class="btn">Upload Transactions Data</a>
+	</form>
+
+</div><!--/card-->
+
+  
+<div class="card">
+
+  <div class="title">Upload most current Data sets for Products</div>
+
+ 
+
+  <div class="features">
+    <ul>
+      <li><span>Mandatory Data columns</span> of the <span>Products</span> data sets</li>
+	  <li>PRODUCT_NUM - Unique, DEPARTMENT</li>
+	  <li>COMMODITY, BRAND_TY </li>
+	  <li>NATURAL_ORGANIC_FLAG </li>
+      
+    </ul>
+  </div><!--/features-->
+  <div><FONT COLOR="orange">{{ messageProducts }}</FONT></div><br/>
+  <form class ="formclass" enctype = "multipart/form-data" action = "{{url_for('storeuploadedProductfile')}}" method = "post">
+    <input type="file" name="file" class="fileupload"/>
+	<a href='#' onclick='this.parentNode.submit(); return false;' class="btn">Upload Products Data</a>
+	</form>
+
+</div><!--/card-->
+
+
+
+
+
+ </body>
+</html>
